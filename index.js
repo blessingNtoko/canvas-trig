@@ -106,7 +106,7 @@ function drawTriangle(angleDeg) {
     context.moveTo(xEndPoint, yEndPoint);
     context.lineTo(xEndPoint, 300);
     context.stroke();
-    drawTextAtPoint(`(${xEndPoint.toFixed(2)}, ${yEndPoint.toFixed(2)})`);
+    drawTextAtPoint(`(${xEndPoint.toFixed(2)}, ${yEndPoint.toFixed(2)})`, xEndPoint.toFixed(2), yEndPoint.toFixed(2));
 }
 
 function getLineLength() {
