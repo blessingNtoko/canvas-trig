@@ -22,9 +22,9 @@ function setupCanvas() {
 
 function drawCanvas() {
     drawRectangle("#839192", 5, 0, 0, 600, 600);
-    drawCircle();
-    drawLine();
-    drawLine();
+    drawCircle("#839192", 1, xCircleCenter, yCircleCenter, radius, 0, 2 * Math.PI);
+    drawLine("#839192", 1, xCircleCenter, 0, xCircleCenter, 600);
+    drawLine("#839192", 1, 0, yCircleCenter, 600, yCircleCenter);
 }
 
 function reDrawCanvas() {
@@ -37,16 +37,20 @@ function drawRectangle(strokeColor, lineWidth, startX, startY, endX, endY) {
     context.strokeRect(startX, startY, endX, endY);
 }
 
-function drawCircle(strokeColor, lineWidth, xCircleCenter, yCircleCenter, radius, arcStart, arcEnd) {
+function drawCircle(strokeColor, lineWidth, xCircCenter, yCircCenter, radius, arcStart, arcEnd) {
     context.strokeStyle = strokeColor;
     context.lineWidth = lineWidth;
     context.beginPath();
-    context.arc(xCircleCenter, yCircleCenter, radius, arcStart, arcEnd);
+    context.arc(xCircCenter, yCircCenter, radius, arcStart, arcEnd);
     context.stroke();
 }
 
-function drawLine() {
-    
+function drawLine(strokeColor, lineWidth, xStart, yStart, xEnd, yEnd) {
+    context.strokeStyle = strokeColor;
+    context.lineWidth = lineWidth;
+    context.move(xStart, yStart);
+    context.lineTo(xEnd, xStart);
+    context.stroke();
 }
 
 function drawTextAtPoint() {
