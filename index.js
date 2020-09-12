@@ -5,7 +5,7 @@ class MousePosition {
     }
 }
 
-const radius = 200;
+const circleRadius = 200;
 const xCircleCenter = 300;
 const yCircleCenter = 300;
 let canvas;
@@ -23,7 +23,7 @@ function setupCanvas() {
 
 function drawCanvas() {
     drawRectangle("#839192", 5, 0, 0, 600, 600);
-    drawCircle("#839192", 1, xCircleCenter, yCircleCenter, radius, 0, 2 * Math.PI);
+    drawCircle("#839192", 1, xCircleCenter, yCircleCenter, circleRadius, 0, 2 * Math.PI);
     drawLine("#839192", 1, xCircleCenter, 0, xCircleCenter, 600);
     drawLine("#839192", 1, 0, yCircleCenter, 600, yCircleCenter);
 }
@@ -96,8 +96,8 @@ function degreesToRadians(deg) {
 function drawTriangle(angleDeg) {
     context.moveTo(xCircleCenter, yCircleCenter);
 
-    let xEndPoint = xCircleCenter + radius * Math.cos(degreesToRadians(angleDeg));
-    let yEndPoint = yCircleCenter + radius * -(Math.cos(degreesToRadians(angleDeg)));
+    let xEndPoint = xCircleCenter + circleRadius * Math.cos(degreesToRadians(angleDeg));
+    let yEndPoint = yCircleCenter + circleRadius * -(Math.sin(degreesToRadians(angleDeg)));
 
     drawTextAtPoint(`Radians : ${degreesToRadians(angleDeg).toFixed(2)}`, 15, 85);
 
