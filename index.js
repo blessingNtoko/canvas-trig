@@ -37,8 +37,12 @@ function drawRectangle(strokeColor, lineWidth, startX, startY, endX, endY) {
     context.strokeRect(startX, startY, endX, endY);
 }
 
-function drawCircle() {
-    
+function drawCircle(strokeColor, lineWidth, xCircleCenter, yCircleCenter, radius, arcStart, arcEnd) {
+    context.strokeStyle = strokeColor;
+    context.lineWidth = lineWidth;
+    context.beginPath();
+    context.arc(xCircleCenter, yCircleCenter, radius, arcStart, arcEnd);
+    context.stroke();
 }
 
 function drawLine() {
