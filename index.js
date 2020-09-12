@@ -31,6 +31,8 @@ function reDrawCanvas(evt) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawCanvas();
     getMousePosition(evt);
+    drawTextAtPoint(`X : ${mousePos.x}`, 15, 25);
+    drawTextAtPoint(`Y : ${mousePos.y}`, 15, 45);
 }
 
 function drawRectangle(strokeColor, lineWidth, startX, startY, endX, endY) {
