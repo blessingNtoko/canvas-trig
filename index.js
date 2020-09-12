@@ -18,7 +18,7 @@ function setupCanvas() {
     canvas = document.getElementById("myCanvas");
     context = canvas.getContext("2d");
     drawCanvas();
-    canvas.addEventListener("mousemove", reDrawCanvas);
+    canvas.addEventListener("mousemove", redrawCanvas);
 }
 
 function drawCanvas() {
@@ -28,13 +28,15 @@ function drawCanvas() {
     drawLine("#839192", 1, 0, yCircleCenter, 600, yCircleCenter);
 }
 
-function reDrawCanvas(evt) {
+function redrawCanvas(evt) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawCanvas();
     getMousePosition(evt);
     drawTextAtPoint(`X : ${mousePos.x}`, 15, 25);
     drawTextAtPoint(`Y : ${mousePos.y}`, 15, 45);
     let angleOfMouseDegrees = getAngleUsingXAndY(mousePos.x, mousePos.y);
+    drawTextAtPoint(`Degrees : ${angleOfMouseDegrees}`, 15, 65);
+    drawTriangle(angleOfMouseDegrees);
 }
 
 function drawRectangle(strokeColor, lineWidth, startX, startY, endX, endY) {
@@ -91,8 +93,20 @@ function degreesToRadians(deg) {
     return deg * (Math.PI / 180);
 }
 
-function drawTriangle() {
-    
+function drawTriangle(angleDeg) {
+    context.moveTo(xCircleCenter, yCircleCenter);
+
+    let xEndPoint = xCircleCenter + radius * Math.cos(degreesToRadians(angleDeg));
+    let yEndPoint = yCircleCenter + radius * -(Math.cos(degreesToRadians(angleDeg)));
+
+    drawTextAtPoint(`Radians : ${degreesToRadians(angleDeg).toFixed(2)}`, 15, 85);
+
+    context.lineTo(xEndPoint, yEndPoint);
+    context.stroke();
+    context.moveTo(xEndPoint, yEndPoint);
+    context.lineTo(xEndPoint, 300);
+    context.stroke();
+    drawTextAtPoint(`(${xEndPoint.toFixed(2)}, ${yEndPoint.toFixed(2)})`);
 }
 
 function getLineLength() {
