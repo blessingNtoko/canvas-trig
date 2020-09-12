@@ -11,9 +11,10 @@ const yCircleCenter = 300;
 let canvas;
 let context;
 let mousePos = new MousePosition(0, 0);
-document.addEventListener("DomContentLoaded", setupCanvas);
+document.addEventListener("DOMContentLoaded", setupCanvas);
 
 function setupCanvas() {
+    console.log("Setting up canvas...");
     canvas = document.getElementById("myCanvas");
     context = canvas.getContext("2d");
     drawCanvas();
@@ -33,6 +34,7 @@ function reDrawCanvas(evt) {
     getMousePosition(evt);
     drawTextAtPoint(`X : ${mousePos.x}`, 15, 25);
     drawTextAtPoint(`Y : ${mousePos.y}`, 15, 45);
+    let angleOfMouseDegrees = getAngleUsingXAndY(mousePos.x, mousePos.y);
 }
 
 function drawRectangle(strokeColor, lineWidth, startX, startY, endX, endY) {
@@ -52,8 +54,8 @@ function drawCircle(strokeColor, lineWidth, xCircCenter, yCircCenter, radius, ar
 function drawLine(strokeColor, lineWidth, xStart, yStart, xEnd, yEnd) {
     context.strokeStyle = strokeColor;
     context.lineWidth = lineWidth;
-    context.move(xStart, yStart);
-    context.lineTo(xEnd, xStart);
+    context.moveTo(xStart, yStart);
+    context.lineTo(xEnd, yEnd);
     context.stroke();
 }
 
@@ -72,7 +74,9 @@ function getMousePosition(evt) {
 }
 
 function getAngleUsingXAndY(x, y) {
-    
+    let adjacent = x;
+    let opposite = y;
+    return radiansToDegrees(Math.atan2(opposite, adjacent));
 }
 
 function radiansToDegrees(rad) {
