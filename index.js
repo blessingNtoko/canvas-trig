@@ -27,8 +27,10 @@ function drawCanvas() {
     drawLine("#839192", 1, 0, yCircleCenter, 600, yCircleCenter);
 }
 
-function reDrawCanvas() {
-    
+function reDrawCanvas(evt) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawCanvas();
+    getMousePosition(evt);
 }
 
 function drawRectangle(strokeColor, lineWidth, startX, startY, endX, endY) {
@@ -53,12 +55,18 @@ function drawLine(strokeColor, lineWidth, xStart, yStart, xEnd, yEnd) {
     context.stroke();
 }
 
-function drawTextAtPoint() {
-    
+function drawTextAtPoint(text, x, y) {
+    context.font = "15px Arial";
+    context.fillText(text, x, y);
 }
 
-function getMousePosition() {
-    
+function getMousePosition(evt) {
+    let canvasDimensions = canvas.getBoundingClientRect();
+    mousePos.x = Math.floor(evt.clientX - canvasDimensions.left);
+    mousePos.y = Math.floor(evt.clientY - canvasDimensions.top);
+    mousePos.x -= 300;
+    mousePos.y = -1 * (mousePos.y - 300);
+    return mousePos;
 }
 
 function getAngleUsingXAndY() {
