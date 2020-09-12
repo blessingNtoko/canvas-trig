@@ -69,16 +69,20 @@ function getMousePosition(evt) {
     return mousePos;
 }
 
-function getAngleUsingXAndY() {
+function getAngleUsingXAndY(x, y) {
     
 }
 
-function radiansToDegrees() {
-    
+function radiansToDegrees(rad) {
+    if (rad < 0) {
+        return (360.0 + (rad * (180 / Math.PI))).toFixed(2);
+    } else {
+        return (rad * (180 / Math.PI)).toFixed(2);
+    }
 }
 
-function degreesToRadians() {
-    
+function degreesToRadians(deg) {
+    return deg * (Math.PI / 180);
 }
 
 function drawTriangle() {
