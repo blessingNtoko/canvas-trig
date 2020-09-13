@@ -106,10 +106,22 @@ function drawTriangle(angleDeg) {
     context.moveTo(xEndPoint, yEndPoint);
     context.lineTo(xEndPoint, 300);
     context.stroke();
-    drawTextAtPoint(`(${xEndPoint.toFixed(2)}, ${yEndPoint.toFixed(2)})`, xEndPoint.toFixed(2), yEndPoint.toFixed(2));
+    drawTextAtPoint(`(${xEndPoint.toFixed(2)}, ${yEndPoint.toFixed(2)})`, xEndPoint.toFixed(2) + 10, yEndPoint.toFixed(2) - 10);
+
+    let hypoLength = getLineLength(xCircleCenter, yCircleCenter, xEndPoint, yEndPoint);
+    drawTextAtPoint(`Hypotenus Length: ${hypoLength.toFixed(2)}`, 15, 105);
+    let oppLength = getLineLength(xEndPoint, yEndPoint, xEndPoint, 300);
+    drawTextAtPoint(`Opp Length: ${oppLength.toFixed(2)}`, 15, 125);
+
+
 }
 
-function getLineLength() {
-    
+function getLineLength(x1, y1, x2, y2) {
+    let xS = x2 - x1;
+    xS = xS * xS;
+    let yS = y2 - y1;
+    yS = yS * yS;
+
+    return Math.sqrt(xS + yS);
 }
 
